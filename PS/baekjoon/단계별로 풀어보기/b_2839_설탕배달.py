@@ -1,17 +1,21 @@
 data = int(input())
-sugar = [3,5]
+sugar = [(data//3)+1, (data//5)+1]
 
-count = data // 3
-answer = 0
+count = sugar[0] + sugar[1]
+flag = True
 
-for i in range(data//5 + 1):
-    if i == 0 and data % 3 == 0:
+for i in range(sugar[0]):
+    for j in range(sugar[1],-1,-1):
+        if 3*i + 5*j == data:
+            count = min(i+j,count)
+            flag = False
 
-        count = min(data // 3, count)
+        else:
+            continue
 
-    elif (data % (5*i)) % 3 == 0:
-        count = min(data // 5 + (data % 5) // 3, count)
+if flag:
+    print(-1)
 
+else:
+    print(count)
 
-
-print(count)
